@@ -27,16 +27,22 @@ class Convert2Strings
         return res
     end
     def checkInDictionary(allPossibleList)
-        # result=checkfor(allPossibleList,4) #check in dictionary with 10 character words matching
-        # result=checkfor(allPossibleList,2,2) #check in dictionary with 10 character words matching
-        result=checkfor(allPossibleList,2,2,2) #check in dictionary with 10 character words matching
+        result=checkfor(allPossibleList,10) #check in dictionary with 10 character words matching
+        result +=checkfor(allPossibleList,7,3) #check in dictionary for two words with 10 character words matching
+        result +=checkfor(allPossibleList,6,4) #check in dictionary for two words with 10 character words matching
+        result +=checkfor(allPossibleList,5,5) #check in dictionary for two words with 10 character words matching
+        result +=checkfor(allPossibleList,4,6) #check in dictionary for two words with 10 character words matching
+        result +=checkfor(allPossibleList,3,7) #check in dictionary for two words with 10 character words matching
+        result +=checkfor(allPossibleList,4,3,3) #check in dictionary with 10 character words matching
+        result +=checkfor(allPossibleList,3,3,4) #check in dictionary with 10 character words matching
+        result +=checkfor(allPossibleList,3,4,3) #check in dictionary with 10 character words matching
         return result
     end
     def checkfor(allpossiblearray,firstwordcount,secondwordcount=0,thirdwordcount=0)
         
         # puts $dictionary.first
         # exit()
-        # puts secondwordcount
+        # puts allpossiblearray
         # exit()
         finalarray=Array.new
         allpossiblearray.each do |i|
@@ -77,13 +83,13 @@ class Convert2Strings
 end
 
 #for testing purpose
-$dictionary=['aa','ae','ab','at','motortruck',
+$dictionary=['aa','ae','aaaa','abab','abacca','ab','at','motortruck',
     'test','motor','truck','noun','usual',
     'acta','mounts','amounts','act',
     'catamounts','acta','cat','boot',
     'our','out','opt','puck','not','not']
 #for testing purpose 
-cellno="222322"
+cellno="2282668687"
 c=Convert2Strings.new
 var= c.printKeyWords(cellno)
 puts c.checkInDictionary(var)
