@@ -27,15 +27,34 @@ class Convert2Strings
         return res
     end
     def checkInDictionary(allPossibleList)
+        f = File.open("dictionary.txt", "r")
+        $dictionary=Array.new
+        $dictionary[3]=Array.new
+        $dictionary[4]=Array.new
+        $dictionary[5]=Array.new
+        $dictionary[6]=Array.new
+        $dictionary[7]=Array.new
+        $dictionary[10]=Array.new
+        f.each_line do |line|
+            newval=line.strip.downcase
+            len=newval.length
+            if len==3 or len==4 or len==5 or len==6 or len==7 or len==10
+                $dictionary[len].push(newval)
+            end
+        end
+
+        puts $dictionary[3]
+        exit()
+        
         result=checkfor(allPossibleList,10) #check in dictionary with 10 character words matching
         result +=checkfor(allPossibleList,7,3) #check in dictionary for two words with 10 character words matching
         result +=checkfor(allPossibleList,6,4) #check in dictionary for two words with 10 character words matching
         result +=checkfor(allPossibleList,5,5) #check in dictionary for two words with 10 character words matching
         result +=checkfor(allPossibleList,4,6) #check in dictionary for two words with 10 character words matching
         result +=checkfor(allPossibleList,3,7) #check in dictionary for two words with 10 character words matching
-        result +=checkfor(allPossibleList,4,3,3) #check in dictionary with 10 character words matching
-        result +=checkfor(allPossibleList,3,3,4) #check in dictionary with 10 character words matching
-        result +=checkfor(allPossibleList,3,4,3) #check in dictionary with 10 character words matching
+        result +=checkfor(allPossibleList,4,3,3) #check in dictionary for three words with 10 character words matching
+        result +=checkfor(allPossibleList,3,3,4) #check in dictionary for three words with 10 character words matching
+        result +=checkfor(allPossibleList,3,4,3) #check in dictionary for three words with 10 character words matching
         return result
     end
     def checkfor(allpossiblearray,firstwordcount,secondwordcount=0,thirdwordcount=0)
@@ -64,14 +83,14 @@ class Convert2Strings
 
             # puts secondword
 
-            if $dictionary.uniq.include?firstword and secondwordcount==0 and thirdwordcount==0
+            if $dictionary[firstwordcount].uniq.include?firstword and secondwordcount==0 and thirdwordcount==0
                 finalarray.push(firstword)
-            elsif $dictionary.include?firstword and $dictionary.include?secondword and thirdwordcount==0
+            elsif $dictionary[firstwordcount].include?firstword and $dictionary[secondwordcount].include?secondword and thirdwordcount==0
                 # puts firstword
                 # puts secondword
                 newword=firstword+','+secondword
                 finalarray.push(newword)
-            elsif $dictionary.include?firstword and $dictionary.include?secondword and $dictionary.include?thirdword
+            elsif $dictionary[firstwordcount].include?firstword and $dictionary[secondwordcount].include?secondword and $dictionary[thirdwordcount].include?thirdword
                 newword=firstword+','+secondword+','+thirdword
                 finalarray.push(newword)
             end
@@ -83,11 +102,11 @@ class Convert2Strings
 end
 
 #for testing purpose
-$dictionary=['aa','ae','aaaa','abab','abacca','ab','at','motortruck',
-    'test','motor','truck','noun','usual',
-    'acta','mounts','amounts','act',
-    'catamounts','acta','cat','boot',
-    'our','out','opt','puck','not','not']
+# $dictionary=['aa','ae','aaaa','abab','abacca','ab','at','motortruck',
+#     'test','motor','truck','noun','usual',
+#     'acta','mounts','amounts','act',
+#     'catamounts','acta','cat','boot',
+#     'our','out','opt','puck','not','not']
 #for testing purpose 
 cellno="2282668687"
 c=Convert2Strings.new
