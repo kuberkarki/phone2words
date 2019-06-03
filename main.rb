@@ -43,8 +43,8 @@ class Convert2Strings
             end
         end
 
-        puts $dictionary[3]
-        exit()
+        # puts $dictionary[3]
+        # exit()
         
         result=checkfor(allPossibleList,10) #check in dictionary with 10 character words matching
         result +=checkfor(allPossibleList,7,3) #check in dictionary for two words with 10 character words matching
