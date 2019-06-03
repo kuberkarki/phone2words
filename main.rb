@@ -28,8 +28,8 @@ class Convert2Strings
     end
     def checkInDictionary(allPossibleList)
         # result=checkfor(allPossibleList,4) #check in dictionary with 10 character words matching
-        result=checkfor(allPossibleList,2,2) #check in dictionary with 10 character words matching
-        # result=checkfor(allPossibleList,2,2,2) #check in dictionary with 10 character words matching
+        # result=checkfor(allPossibleList,2,2) #check in dictionary with 10 character words matching
+        result=checkfor(allPossibleList,2,2,2) #check in dictionary with 10 character words matching
         return result
     end
     def checkfor(allpossiblearray,firstwordcount,secondwordcount=0,thirdwordcount=0)
@@ -83,7 +83,7 @@ $dictionary=['aa','ae','ab','at','motortruck',
     'catamounts','acta','cat','boot',
     'our','out','opt','puck','not','not']
 #for testing purpose 
-cellno="2223"
+cellno="222322"
 c=Convert2Strings.new
 var= c.printKeyWords(cellno)
 puts c.checkInDictionary(var)
