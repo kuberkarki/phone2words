@@ -27,19 +27,47 @@ class Convert2Strings
         return res
     end
     def checkInDictionary(allPossibleList)
-        result=checkfor(allPossibleList,2) #check in dictionary with 10 character words matching
+        # result=checkfor(allPossibleList,4) #check in dictionary with 10 character words matching
+        result=checkfor(allPossibleList,2,2) #check in dictionary with 10 character words matching
+        # result=checkfor(allPossibleList,2,2,2) #check in dictionary with 10 character words matching
         return result
     end
     def checkfor(allpossiblearray,firstwordcount,secondwordcount=0,thirdwordcount=0)
         
         # puts $dictionary.first
         # exit()
-        # puts allpossiblearray
+        # puts secondwordcount
         # exit()
         finalarray=Array.new
         allpossiblearray.each do |i|
-            if $dictionary.uniq.include?i and secondwordcount==0 and thirdwordcount==0
-            finalarray.push(i)
+            firstword=i[0,firstwordcount]
+            if secondwordcount>0
+                secondword=i[firstwordcount,secondwordcount]
+                # puts secondword
+            else
+                secondword=thirdword=''
+            end
+            
+
+            if thirdwordcount>0
+                # secondword=i[firstwordcount,secondwordcount]
+                thirdword=i[firstwordcount+secondwordcount,thirdwordcount]
+            else
+                thirdword=''
+            end
+
+            # puts secondword
+
+            if $dictionary.uniq.include?firstword and secondwordcount==0 and thirdwordcount==0
+                finalarray.push(firstword)
+            elsif $dictionary.include?firstword and $dictionary.include?secondword and thirdwordcount==0
+                # puts firstword
+                # puts secondword
+                newword=firstword+','+secondword
+                finalarray.push(newword)
+            elsif $dictionary.include?firstword and $dictionary.include?secondword and $dictionary.include?thirdword
+                newword=firstword+','+secondword+','+thirdword
+                finalarray.push(newword)
             end
         end
        
@@ -55,7 +83,7 @@ $dictionary=['aa','ae','ab','at','motortruck',
     'catamounts','acta','cat','boot',
     'our','out','opt','puck','not','not']
 #for testing purpose 
-cellno="22"
+cellno="2223"
 c=Convert2Strings.new
 var= c.printKeyWords(cellno)
 puts c.checkInDictionary(var)
