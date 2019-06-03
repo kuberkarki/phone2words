@@ -1,4 +1,4 @@
-# phone2words
+# phone2words in Ruby
 Phone number to words convert.
 10 digit phone number is taken as input and convert that to readable word or words with maximum 3 characters. Words are taken from dictionary.txt file.
 
