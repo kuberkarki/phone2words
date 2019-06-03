@@ -26,12 +26,38 @@ class Convert2Strings
         #exit()
         return res
     end
+    def checkInDictionary(allPossibleList)
+        result=checkfor(allPossibleList,2) #check in dictionary with 10 character words matching
+        return result
+    end
+    def checkfor(allpossiblearray,firstwordcount,secondwordcount=0,thirdwordcount=0)
+        
+        # puts $dictionary.first
+        # exit()
+        # puts allpossiblearray
+        # exit()
+        finalarray=Array.new
+        allpossiblearray.each do |i|
+            if $dictionary.uniq.include?i and secondwordcount==0 and thirdwordcount==0
+            finalarray.push(i)
+            end
+        end
+       
+        return finalarray
+        #puts firstwordcount
+    end
 end
 
+#for testing purpose
+$dictionary=['aa','ae','ab','at','motortruck',
+    'test','motor','truck','noun','usual',
+    'acta','mounts','amounts','act',
+    'catamounts','acta','cat','boot',
+    'our','out','opt','puck','not','not']
 #for testing purpose 
 cellno="22"
 c=Convert2Strings.new
 var= c.printKeyWords(cellno)
-puts var
+puts c.checkInDictionary(var)
 
 
